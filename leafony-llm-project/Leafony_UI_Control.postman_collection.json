@@ -1,0 +1,354 @@
+{
+  "info": {
+    "name": "Leafony UI Control API",
+    "description": "PostmanからLeafony LLMプロジェクトのUIを制御するためのAPI集",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "UIコントロール",
+      "item": [
+        {
+          "name": "ホームページに移動",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"navigate\",\n  \"user_id\": \"default\",\n  \"direction\": \"home\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/ui-control",
+              "host": ["{{base_url}}"],
+              "path": ["api", "ui-control"]
+            },
+            "description": "ブラウザをホームページに移動させます"
+          }
+        },
+        {
+          "name": "特定の教材に移動",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"navigate\",\n  \"user_id\": \"default\",\n  \"target\": \"js-variables\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/ui-control",
+              "host": ["{{base_url}}"],
+              "path": ["api", "ui-control"]
+            },
+            "description": "指定した教材（js-variables）に移動します"
+          }
+        },
+        {
+          "name": "次の教材に移動",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"navigate\",\n  \"user_id\": \"default\",\n  \"direction\": \"next\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/ui-control",
+              "host": ["{{base_url}}"],
+              "path": ["api", "ui-control"]
+            },
+            "description": "現在のページで次の教材に移動します（右矢印キー相当）"
+          }
+        },
+        {
+          "name": "前の教材に移動",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"navigate\",\n  \"user_id\": \"default\",\n  \"direction\": \"prev\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/ui-control",
+              "host": ["{{base_url}}"],
+              "path": ["api", "ui-control"]
+            },
+            "description": "現在のページで前の教材に移動します（左矢印キー相当）"
+          }
+        },
+        {
+          "name": "要素をハイライト",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"highlight\",\n  \"user_id\": \"default\",\n  \"target\": \"[data-ui-control='next-button']\",\n  \"data\": {\n    \"color\": \"#fbbf24\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/ui-control",
+              "host": ["{{base_url}}"],
+              "path": ["api", "ui-control"]
+            },
+            "description": "指定した要素をハイライトします（次へボタンを黄色でハイライト）"
+          }
+        },
+        {
+          "name": "ポップアップ表示（成功）",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"show_popup\",\n  \"user_id\": \"default\",\n  \"data\": {\n    \"message\": \"学習が完了しました！\",\n    \"type\": \"success\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/ui-control",
+              "host": ["{{base_url}}"],
+              "path": ["api", "ui-control"]
+            },
+            "description": "成功メッセージのポップアップを表示します"
+          }
+        },
+        {
+          "name": "ポップアップ表示（警告）",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"show_popup\",\n  \"user_id\": \"default\",\n  \"data\": {\n    \"message\": \"姿勢が検出されました。次の教材に移動します。\",\n    \"type\": \"warning\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/ui-control",
+              "host": ["{{base_url}}"],
+              "path": ["api", "ui-control"]
+            },
+            "description": "警告メッセージのポップアップを表示します"
+          }
+        },
+        {
+          "name": "スクロール（上）",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"scroll\",\n  \"user_id\": \"default\",\n  \"direction\": \"up\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/ui-control",
+              "host": ["{{base_url}}"],
+              "path": ["api", "ui-control"]
+            },
+            "description": "ページを上にスクロールします"
+          }
+        },
+        {
+          "name": "スクロール（下）",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"scroll\",\n  \"user_id\": \"default\",\n  \"direction\": \"down\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/ui-control",
+              "host": ["{{base_url}}"],
+              "path": ["api", "ui-control"]
+            },
+            "description": "ページを下にスクロールします"
+          }
+        }
+      ]
+    },
+    {
+      "name": "状態確認",
+      "item": [
+        {
+          "name": "UI状態を取得",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/ui-control/status",
+              "host": ["{{base_url}}"],
+              "path": ["api", "ui-control", "status"]
+            },
+            "description": "現在のUI接続状態と利用可能なアクションを取得します"
+          }
+        },
+        {
+          "name": "教材一覧を取得",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/materials",
+              "host": ["{{base_url}}"],
+              "path": ["api", "materials"]
+            },
+            "description": "利用可能な教材一覧を取得します"
+          }
+        }
+      ]
+    },
+    {
+      "name": "シミュレーション",
+      "item": [
+        {
+          "name": "Leafony姿勢検出シミュレート",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sensor_type\": \"tilt\",\n  \"action\": \"right_tilt\",\n  \"angle\": 45,\n  \"timestamp\": \"2025-01-24T12:00:00Z\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trigger-llm",
+              "host": ["{{base_url}}"],
+              "path": ["api", "trigger-llm"]
+            },
+            "description": "Leafony傾きセンサーのデータ受信をシミュレートします"
+          }
+        },
+        {
+          "name": "学習セッション開始",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// 学習セッション開始のワークフロー",
+                  "setTimeout(() => {",
+                  "  // 1. ホームに移動",
+                  "  pm.sendRequest({",
+                  "    url: pm.variables.get('base_url') + '/api/ui-control',",
+                  "    method: 'POST',",
+                  "    header: {'Content-Type': 'application/json'},",
+                  "    body: {",
+                  "      mode: 'raw',",
+                  "      raw: JSON.stringify({",
+                  "        action: 'navigate',",
+                  "        user_id: 'default',",
+                  "        direction: 'home'",
+                  "      })",
+                  "    }",
+                  "  });",
+                  "}, 1000);",
+                  "",
+                  "setTimeout(() => {",
+                  "  // 2. JavaScript基礎に移動",
+                  "  pm.sendRequest({",
+                  "    url: pm.variables.get('base_url') + '/api/ui-control',",
+                  "    method: 'POST',",
+                  "    header: {'Content-Type': 'application/json'},",
+                  "    body: {",
+                  "      mode: 'raw',",
+                  "      raw: JSON.stringify({",
+                  "        action: 'navigate',",
+                  "        user_id: 'default',",
+                  "        target: 'js-variables'",
+                  "      })",
+                  "    }",
+                  "  });",
+                  "}, 3000);",
+                  "",
+                  "setTimeout(() => {",
+                  "  // 3. 開始メッセージ表示",
+                  "  pm.sendRequest({",
+                  "    url: pm.variables.get('base_url') + '/api/ui-control',",
+                  "    method: 'POST',",
+                  "    header: {'Content-Type': 'application/json'},",
+                  "    body: {",
+                  "      mode: 'raw',",
+                  "      raw: JSON.stringify({",
+                  "        action: 'show_popup',",
+                  "        user_id: 'default',",
+                  "        data: {",
+                  "          message: '学習セッションを開始しました！',",
+                  "          type: 'success'",
+                  "        }",
+                  "      })",
+                  "    }",
+                  "  });",
+                  "}, 5000);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/ui-control/status",
+              "host": ["{{base_url}}"],
+              "path": ["api", "ui-control", "status"]
+            },
+            "description": "学習セッション開始のワークフローをシミュレートします"
+          }
+        }
+      ]
+    }
+  ]
+}
