@@ -2,9 +2,9 @@
 
 # FastAPI Server関連
 fastapi==0.104.1          # WebAPIフレームワーク
-uvicorn[standard]==0.24.0  # ASGI Webサーバー
+uvicorn[standard]==0.22.0  # ASGI Webサーバー（WebSocketサポート付き）
 jinja2==3.1.2             # HTMLテンプレートエンジン
-python-websockets==11.0.3 # WebSocket通信
+websockets==15.0.1        # WebSocket通信ライブラリ
 
 # Gateway関連
 pyserial==3.5             # シリアル通信

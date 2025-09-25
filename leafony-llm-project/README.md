@@ -24,6 +24,7 @@ leafony-llm-project/
 │   │   └── index.html             
 │   ├── llm_client.py              
 │   └── main.py                    
+│   └── firebase.py                
 │
 ├── requirements.txt               
 └── README.md                      
