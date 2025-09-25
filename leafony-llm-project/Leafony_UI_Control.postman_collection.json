@@ -60,6 +60,28 @@
           }
         },
         {
+          "name": "コースの最初のレッスンに移動",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"navigate\",\n  \"user_id\": \"default\",\n  \"target\": \"js-basics\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/ui-control",
+              "host": ["{{base_url}}"],
+              "path": ["api", "ui-control"]
+            },
+            "description": "JavaScript基礎コースの最初のレッスンに移動します"
+          }
+        },
+        {
           "name": "次の教材に移動",
           "request": {
             "method": "POST",
