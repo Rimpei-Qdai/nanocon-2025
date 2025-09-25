@@ -117,6 +117,16 @@ export default function LearnPage() {
       ]);
 
       if (materialData && allMaterialsData) {
+        // コースIDでアクセスされた場合、最初のレッスンにリダイレクト
+        if (materialData.type === 'directory') {
+          const firstLesson = allMaterialsData.find((m: any) => m.parent_id === materialData.id);
+          if (firstLesson) {
+            console.log(`Redirecting from course ${materialData.id} to first lesson ${firstLesson.id}`);
+            router.replace(`/learn/${firstLesson.id}`);
+            return;
+          }
+        }
+        
         // コース内教材を整理
         organizeCourseMaterials(allMaterialsData, materialData);
       }
@@ -125,7 +135,7 @@ export default function LearnPage() {
     };
 
     initializePage();
-  }, [id]);
+  }, [id, router]);
 
   // キーボードイベントリスナー追加
   useEffect(() => {

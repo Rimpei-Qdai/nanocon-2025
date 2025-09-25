@@ -377,13 +377,22 @@ async def control_ui(request: UIControlRequest):
                 })
             elif request.target:
                 # 特定の教材に移動
+                # コースIDの場合は最初のレッスンを探す
+                target_material = next((m for m in sample_materials if m["id"] == request.target), None)
+                if target_material and target_material["type"] == "directory":
+                    # コースの場合、最初のレッスンを取得
+                    first_lesson = next((m for m in sample_materials if m["parent_id"] == request.target), None)
+                    actual_target = first_lesson["id"] if first_lesson else request.target
+                else:
+                    actual_target = request.target
+                
                 message = json.dumps({
                     "type": "ui_control", 
                     "action": "navigate_to_page",
                     "data": {
                         "page": "learn",
-                        "url": f"/learn/{request.target}",
-                        "material_id": request.target
+                        "url": f"/learn/{actual_target}",
+                        "material_id": actual_target
                     }
                 })
             elif request.direction in ["next", "prev"]:
